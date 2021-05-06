@@ -2,6 +2,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+require('dotenv').config();
 
 const RouterTags = require("./src/routes/tags");
 const RouterPosts = require("./src/routes/posts");
@@ -16,7 +17,7 @@ app.use(cors());
 
 // Importamos o código do módulo database e usamos a função connection para conectar ao banco de dados.
 const database = require("./src/config/database");
-database("mongodb://localhost:27017/BlogGMRelacional");
+database(process.env.CONNECTION_STRING);
 
 app.use(logger("dev"));
 app.use(express.json());
