@@ -1,3 +1,4 @@
+require('dotenv').config();
 const seeder = require('mongoose-seed');
 
 const categoriasIds = [
@@ -44,7 +45,7 @@ const postsIds = [
 ]
 
 // Connect to MongoDB via Mongoose
-seeder.connect('mongodb://localhost:27017/BlogGMRelacional', () => {
+seeder.connect(process.env.CONNECTION_STRING, () => {
 
     // Load Mongoose models
     seeder.loadModels([
