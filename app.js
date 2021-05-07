@@ -13,7 +13,7 @@ const RouterCategorias = require("./src/routes/categorias");
 var app = express();
 
 const cors = require("cors");
-app.use(cors());
+app.use(cors({ origin: 'https://bloggm-frontend.herokuapp.com/'}));
 
 // Importamos o código do módulo database e usamos a função connection para conectar ao banco de dados.
 const database = require("./src/config/database");
