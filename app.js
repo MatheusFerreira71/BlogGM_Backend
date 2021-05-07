@@ -17,7 +17,7 @@ app.use(cors());
 
 // Importamos o código do módulo database e usamos a função connection para conectar ao banco de dados.
 const database = require("./src/config/database");
-database(process.env.CONNECTION_STRING);
+database(process.env.DEVELOPEMENT ? 'mongodb://localhost:27017/BlogGMRelacional' : process.env.CONNECTION_STRING);
 
 app.use(logger("dev"));
 app.use(express.json());
