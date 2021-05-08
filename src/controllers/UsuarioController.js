@@ -36,10 +36,10 @@ module.exports = {
       const usuario = await Usuario.findByIdAndUpdate(id, req.body);
       if (usuario) {
         //usuario encontrado e atualizado
-        res.status(204).end(); // HTTP 204: No content
+        res.json(true)
       } else {
         //Http 404: Not found.
-        res.status(404).end();
+        res.status(404).json(false);
       }
     } catch (erro) {
       console.log(erro);
