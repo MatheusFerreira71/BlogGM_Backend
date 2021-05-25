@@ -90,8 +90,7 @@ module.exports = {
       // Encontra a post pelo seu id e retorna o objeto encontrado que foi excluído.
       const post = await Post.findByIdAndDelete(_id);
       if (!post) {
-        //post encontrado e excluída.
-        res.status(404).end(); // HTTP 204: No content
+        res.status(404).end(); 
       }
       await PostCategoria.deleteMany({ postId: _id });
       await PostTag.deleteMany({ postId: _id });

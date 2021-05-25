@@ -1,3 +1,4 @@
+const Post = require("../models/Post");
 const Usuario = require("../models/Usuario");
 
 module.exports = {
@@ -54,6 +55,25 @@ module.exports = {
     } catch (erro) {
       console.log(erro);
       res.status(500).send(erro);
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const promises = [Usuario.findByIdAndDelete(id)];
+      promises.push(Post.deleteMany({ usuario: id }));
+      promieses.push(Comentario.deleteMany({ usuario: id }));
+
+      const resolvedValues = await Promise.all(promises);
+
+      if (!resolvedValues[0]) {
+        res.status(404).end();
+      }
+
+      res.status(200).json({ removed: true });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
     }
   },
   findByUsername: async (req, res) => {
