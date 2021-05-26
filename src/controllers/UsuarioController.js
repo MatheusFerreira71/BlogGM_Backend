@@ -1,5 +1,6 @@
 const Post = require("../models/Post");
 const Usuario = require("../models/Usuario");
+const Comentario = require("../models/Comentario");
 
 module.exports = {
   show: async (req, res) => {
@@ -62,7 +63,7 @@ module.exports = {
       const { id } = req.params;
       const promises = [Usuario.findByIdAndDelete(id)];
       promises.push(Post.deleteMany({ usuario: id }));
-      promieses.push(Comentario.deleteMany({ usuario: id }));
+      promises.push(Comentario.deleteMany({ usuario: id }));
 
       const resolvedValues = await Promise.all(promises);
 

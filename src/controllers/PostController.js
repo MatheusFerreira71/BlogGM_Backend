@@ -9,7 +9,6 @@ module.exports = {
   create: async (req, res) => {
     try {
       const { titulo, tituloLower, descricao, corpo, usuario, banner, categorias, tags } = req.body;
-      console.log(req.body)
       const createdPost = await Post.create({
         titulo,
         tituloLower,
